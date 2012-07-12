@@ -27,9 +27,14 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
+// Seed database
+require("./seedDatabase")();
+
 // Routes
 require("./routes/api/movies")(app);
 require("./routes/index")(app);
 
 app.listen(process.env.port || 3000);
-console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+//app.listen(4000);
+//console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+

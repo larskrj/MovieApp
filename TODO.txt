@@ -1,0 +1,11 @@
+Server:
+#   Bytt til mogoose
+#   Insert image
+#   Fullt REST -API
+#   Bedre løsning for index.html
+#   Kjøring av app med både command og iis
+#   logging i iis
+#   test med buster?
+
+Klient
+#      

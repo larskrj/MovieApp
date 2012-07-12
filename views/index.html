@@ -9,21 +9,21 @@
         <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js" type="text/javascript"></script>
         <script src="/javascripts/ApiConnection.js" type="text/javascript"></script>
         <script type="text/javascript">
-            $(function () {
+            $(function() {
                 console.log("start");
                 var api = new app.ApiConnection("/api/movies");
-                api.getAll(function (result) {
-                    $.each(result, function () {
+                api.getAll(function(result) {
+                    $.each(result, function() {
                         $("#movies").append("<li>" + this.title + ", " + this.director + "</li>");
                     });
                 });
-            
+
                 $("#addMovie").click(addMovie);
                 function addMovie() {
                     var movie = { title: "Terminator", director: "ukjent" };
                     api.add(movie, function(result) { console.log(result); });
-                }
-            });
+                }                
+                });
         </script>
     </body>
 </html>

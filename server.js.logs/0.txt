@@ -1,7 +1,6 @@
-Express server listening on port NaN in development mode
-[ { _id: 4fc78a07a26dc8abc64b7a3f,
-    title: 'The Godfather II',
-    director: 'Coppola' },
-  { _id: 4fc79320a26dc8abc64b7a40,
-    title: 'Star Wars',
-    director: 'George Lucas' } ]
+test av console.log
+{ title: 'Terminator', director: 'ukjent' }
+Document ID is: 4ffec260738a1c7c17000001
+test av console.log
+{ title: 'Terminator', director: 'ukjent' }
+Document ID is: 4ffec322738a1c7c17000002
