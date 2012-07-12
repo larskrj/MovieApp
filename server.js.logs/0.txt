@@ -1,0 +1,7 @@
+Express server listening on port NaN in development mode
+[ { _id: 4fc78a07a26dc8abc64b7a3f,
+    title: 'The Godfather II',
+    director: 'Coppola' },
+  { _id: 4fc79320a26dc8abc64b7a40,
+    title: 'Star Wars',
+    director: 'George Lucas' } ]
