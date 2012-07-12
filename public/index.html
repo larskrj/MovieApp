@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Filmer</title>    
+    <link type="text/css" rel="stylesheet" href="stylesheets/stil.css" />
+    <link type="text/css" rel="stylesheet" href="stylesheets/tablesorter.css" />
+    <link type="text/css" rel="stylesheet" href="stylesheets/jquery.lightbox-0.5.css" />    
+    <link type="text/css" rel="Stylesheet" href="stylesheets/ui-lightness/jquery-ui-1.8.16.custom.css"/>
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js" type="text/javascript"></script>
+         
+    <script type="text/javascript" src="javascripts/libs/jquery-ui-1.8.16.custom.js"> </script>
+    <script type="text/javascript" src="javascripts/libs/jquery.validate-1.8.1.js"> </script>
+    <script type="text/javascript" src="javascripts/libs/jquery.tablesorter-2.0.5b.js"> </script>
+    <script type="text/javascript" src="javascripts/libs/jquery.textarearesizer-1.0.4.js"> </script>
+    <script type="text/javascript" src="javascripts/libs/jquery.lightbox-0.5.js"> </script>
+    <script type="text/javascript" src="javascripts/libs/jquery.uitablefilter-1.0.js"> </script>
+    <script type="text/javascript" src="javascripts/libs/handlebars.js"> </script>
+    <script type="text/javascript" src="javascripts/libs/Underscore.js"></script>
+    <script type="text/javascript" src="javascripts/libs/localization/methods_de.js"> </script>
+    <script type="text/javascript" src="javascripts/utils.js"> </script>
+    <script type="text/javascript" src="javascripts/apiRepository.js"> </script>
+    <script type="text/javascript" src="javascripts/plugins.js"> </script>
+    <script type="text/javascript" src="javascripts/main.js"> </script>
+    
+    <script type="text/x-handlebars-template" id="tableRowTemplate">
+		{{#each this}}
+        <tr>            
+		    <td> {{ title }} </td>
+		    <td> {{ director }} </td>
+		    <td> {{ konverterDato releasedate }}</td>
+		    <td> {{ comment }} </td>
+			<td> {{#each images}}
+                    <a class='lightbox' href='{{ this }}'><img class='thumbnail' src='{{ this }}'/></a>
+                  {{/each}}  
+            <input type='hidden' value= '{{ _id  }}' class="_movie_id" />
+            <input type='button' class='nyttBildeKnapp' value='+' data-film-id='{{ _id  }}'/></td>
+		 </tr>
+        {{/each}}
+	</script>
+    
+    <script type="text/javascript">
+        var app = app || {};
+        app.settings = app.settings || {
+            movieUrl: '/api/movies',
+            imageUrl: '/api/movies/images'
+        };
+
+            $(document).ready(function() {
+                app.main.init($("#filmtabell"), $("#nyFilmSkjema"), $("#tableRowTemplate"));
+                //"#filmtabell", "#nullstillFilmer", "#nyFilmSkjema", "#nyttBilde");
+            });
+    </script>
+
+</head>
+<body>
+    <div class="page">
+        <header>
+            <nav>
+                <ul id="menu">
+                    <li><a href="/">Forside</a></li>
+                    <li><a href="/filmer">Filmer</a></li>                    
+                </ul>
+            </nav>
+        </header>
+        <section id="main">
+            
+	<h2>
+		Filmer</h2>
+	<div id="filmer">
+		<div id="filmfilter">
+			Filter:
+			<input type="text" class="tablefilter" data-tabell-id="#filmer" /></div>
+		<table id="filmtabell" class="tablesorter" data-url="/ajax/filmer">
+			<thead>
+				<tr>					
+					<th>
+						Tittel
+					</th>
+					<th>
+						Regissør
+					</th>
+					<th>
+						Lanseringsdato
+					</th>
+					<th class="comment">
+						Kommentar
+					</th>
+					<th>
+						Bilder
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		<input type="button" id="nullstillFilmer" value="Nullstill filmer" data-url="/ajax/filmer/tilbakestill" />
+	</div>
+	<h3>
+		Ny film</h3>
+	<div id="nyFilm">
+		<form action="/ajax/filmer/ny" method="POST" id="nyFilmSkjema">
+			<table>
+				<tr>
+					<th>
+						Tittel:
+					</th>
+					<td>
+						<input type="text" name="title" id="title" class="required" />
+					</td>
+				</tr>
+				<tr>
+					<th>
+						Regissør:
+					</th>
+					<td>
+						<input type="text" name="director" id="director" class="required autocomplete" data-url="/ajax/filmer/regissorer" />
+					</td>
+				</tr>
+				<tr>
+					<th>
+						Lanseringdato:
+					</th>
+					<td>
+						<input type="text" name="releasedate" id="releasedate" class="required date datepicker" />
+					</td>
+				</tr>
+				<tr>
+					<th>
+						Kommentar:
+					</th>
+					<td>
+						<textarea name="comment"></textarea>
+					</td>
+				</tr>
+			</table>
+			<input type="reset" value="Tøm skjema" id="tomSkjema" />
+			<input type="submit" id="leggTilFilm" value="Legg til film" />
+		</form>
+	</div>
+	<div id="nyttBilde" title="Legg til bilde">
+		<form id="nyttBildeSkjema" action="/ajax/filmer/leggtilbilde">
+			<input type="hidden" name="id" id="id" value="" />
+			URL:
+			<input type="text" name="url" id="url" />
+		</form>
+	</div>
+
+        </section>
+        <footer>
+        </footer>
+    </div>
+</body>
+</html>

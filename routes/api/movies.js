@@ -14,11 +14,27 @@ function getMovies(req, res) {
     });
 }
 
+function getDateAsEpoch(dateString){
+    var array = dateString.split("."),
+        day,
+        month,
+        year;
+    
+    if(array.length == 3) {
+        day = array[0];
+        month = parseInt(array[1], 10) - 1;
+        year = array[2];
+
+        return (new Date(year, month, day)).getTime();
+    }    
+    return parseInt(dateString, 10);
+}
+
 function addMovie(req, res) {
     var movie = {
 		title: req.body.title,
 		director: req.body.director,       
-        releasedate: parseInt(req.body.releasedate, 10),
+        releasedate: getDateAsEpoch(req.body.releasedate),
         comment: req.body.comment,
         images: []
 	};

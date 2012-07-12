@@ -8,4 +8,9 @@ Server:
 #   test med buster?
 
 Klient
-#      
+#   styling
+#   dele opp i flere filer
+#   handlebars vs plain html?
+#   oversett til engelsk/norsk?
+#   legg til bilde
+#   diverse plugins

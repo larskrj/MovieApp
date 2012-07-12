@@ -1,6 +1,3 @@
 test av console.log
-{ title: 'Terminator', director: 'ukjent' }
-Document ID is: 4ffec260738a1c7c17000001
 test av console.log
-{ title: 'Terminator', director: 'ukjent' }
-Document ID is: 4ffec322738a1c7c17000002
+test av console.log
