@@ -1,3 +1,5 @@
+/// <reference path="_references.js" />
+
 var app = app || {};
 
 app.plugins = (function($) {
@@ -15,13 +17,12 @@ app.plugins = (function($) {
         $("table").tablesorter({ widgets: ['zebra'] });
     }
 
-    function init() {
-        $("textarea").TextAreaResizer();
-        $(".date").datepicker({ dateFormat: 'dd.mm.yy' });
+    function activateFormPlugins() {
+       $(".date").datepicker({ dateFormat: 'dd.mm.yy' });
     }
 
     return {
         activateTablePlugins: activateTablePlugins,
-        init: init
+        activateFormPlugins: activateFormPlugins
     };
 })(jQuery);

@@ -28,13 +28,15 @@ app.configure('production', function(){
 });
 
 // Seed database
-require("./seedDatabase")();
+require("./seedDatabase").seedIfEmpty();
 
 // Routes
 require("./routes/api/movies")(app);
+require("./routes/api/movieImages")(app);
 require("./routes/index")(app);
 
+console.log("Express server listening on port %d in %s mode", process.env.port || 3000, app.settings.env);
+
 app.listen(process.env.port || 3000);
-//app.listen(4000);
-//console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+
 

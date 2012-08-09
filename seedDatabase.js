@@ -1,4 +1,4 @@
-var movieRepository = require("./repository/movieRepository");
+var movieRepository = require("./repositories/movieRepository");
 
 var defaultMovies = [
     { 
@@ -38,14 +38,18 @@ var defaultMovies = [
     }
 ];
 function seed(i){
-    if(i < defaultMovies.length)
+    i = i || 0;
+
+    if (i < defaultMovies.length)
         movieRepository.insert(defaultMovies[i], function() { seed(i + 1); });            
 }
 
-module.exports = function() {
+exports.seed = seed;
+
+exports.seedIfEmpty = function() {
     movieRepository.getAll(function(result) {        
         if(result.length == 0) {
-            seed(0);
+            seed();
             console.log("seed database");
         }
     });

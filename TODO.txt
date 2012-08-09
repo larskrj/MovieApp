@@ -1,16 +1,14 @@
 Server:
+#	Validering
+
 #   Bytt til mogoose
-#   Insert image
-#   Fullt REST -API
+#   Fullt REST-API 
 #   Bedre løsning for index.html
-#   Kjøring av app med både command og iis
 #   logging i iis
 #   test med buster?
 
 Klient
-#   styling
-#   dele opp i flere filer
+#   tester: qUnit
+#   styling / html5
+#	form: div - fieldset - label
 #   handlebars vs plain html?
-#   oversett til engelsk/norsk?
-#   legg til bilde
-#   diverse plugins

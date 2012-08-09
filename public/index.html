@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Filmer</title>    
-    <link type="text/css" rel="stylesheet" href="stylesheets/stil.css" />
+    <link type="text/css" rel="stylesheet" href="stylesheets/style.css" />
     <link type="text/css" rel="stylesheet" href="stylesheets/tablesorter.css" />
     <link type="text/css" rel="stylesheet" href="stylesheets/jquery.lightbox-0.5.css" />    
     <link type="text/css" rel="Stylesheet" href="stylesheets/ui-lightness/jquery-ui-1.8.16.custom.css"/>
@@ -13,23 +13,25 @@
     <script type="text/javascript" src="javascripts/libs/jquery-ui-1.8.16.custom.js"> </script>
     <script type="text/javascript" src="javascripts/libs/jquery.validate-1.8.1.js"> </script>
     <script type="text/javascript" src="javascripts/libs/jquery.tablesorter-2.0.5b.js"> </script>
-    <script type="text/javascript" src="javascripts/libs/jquery.textarearesizer-1.0.4.js"> </script>
     <script type="text/javascript" src="javascripts/libs/jquery.lightbox-0.5.js"> </script>
     <script type="text/javascript" src="javascripts/libs/jquery.uitablefilter-1.0.js"> </script>
+    <script type="text/javascript" src="javascripts/libs/jquery-pubsub.js"></script>
     <script type="text/javascript" src="javascripts/libs/handlebars.js"> </script>
     <script type="text/javascript" src="javascripts/libs/Underscore.js"></script>
     <script type="text/javascript" src="javascripts/libs/localization/methods_de.js"> </script>
     <script type="text/javascript" src="javascripts/utils.js"> </script>
-    <script type="text/javascript" src="javascripts/apiRepository.js"> </script>
+    <script type="text/javascript" src="javascripts/messages.js"></script>
+    <script type="text/javascript" src="javascripts/movieApi.js"> </script>
     <script type="text/javascript" src="javascripts/plugins.js"> </script>
-    <script type="text/javascript" src="javascripts/main.js"> </script>
-    
+    <script type="text/javascript" src="javascripts/imageDialog.js"></script>
+    <script type="text/javascript" src="javascripts/movies.js"> </script>
+  
     <script type="text/x-handlebars-template" id="tableRowTemplate">
 		{{#each this}}
         <tr>            
 		    <td> {{ title }} </td>
 		    <td> {{ director }} </td>
-		    <td> {{ konverterDato releasedate }}</td>
+		    <td> {{ convertDate releasedate }}</td>
 		    <td> {{ comment }} </td>
 			<td> {{#each images}}
                     <a class='lightbox' href='{{ this }}'><img class='thumbnail' src='{{ this }}'/></a>
@@ -48,7 +50,7 @@
         };
 
             $(document).ready(function() {
-                app.main.init($("#filmtabell"), $("#nyFilmSkjema"), $("#tableRowTemplate"));                
+                app.movies.init($("#filmtabell"), $("#nyFilmSkjema"), $("#tableRowTemplate"), $("#nullstillFilmer"));                
             });
     </script>
 
@@ -71,7 +73,7 @@
 		<div id="filmfilter">
 			Filter:
 			<input type="text" class="tablefilter" data-tabell-id="#filmer" /></div>
-		<table id="filmtabell" class="tablesorter" data-url="/ajax/filmer">
+		<table id="filmtabell" class="tablesorter" data-url="/api/movies">
 			<thead>
 				<tr>					
 					<th>
@@ -114,7 +116,7 @@
 						Regissør:
 					</th>
 					<td>
-						<input type="text" name="director" id="director" class="required autocomplete" data-url="/ajax/filmer/regissorer" />
+						<input type="text" name="director" id="director" class="required" />
 					</td>
 				</tr>
 				<tr>
@@ -139,7 +141,7 @@
 		</form>
 	</div>
 	<div id="nyttBilde" title="Legg til bilde">
-		<form id="nyttBildeSkjema" action="/ajax/filmer/leggtilbilde">
+		<form id="nyttBildeSkjema" action="/api/movies/images">
 			<input type="hidden" name="id" id="id" value="" />
 			URL:
 			<input type="text" name="url" id="url" />

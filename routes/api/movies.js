@@ -1,10 +1,19 @@
+/// <reference path="../../repositories/movieRepository.js" />
 
-var movieRepository = require('../../repository/movieRepository');
+var movieRepository = require('../../repositories/movieRepository');
+var seedDatabase = require('../../seedDatabase');
 
 module.exports = function(app) {
+    app.get('/api/movies/create', createDatabase);
     app.get('/api/movies', getMovies);
     app.post('/api/movies', addMovie);
+    app.del('/api/movies', deleteMovies);
     app.post('/api/movies/images', addImage);
+}
+
+function createDatabase(req, res) {
+    seedDatabase();
+    setTimeout(function () { getMovies(req, res); }, 1000)
 }
 
 function getMovies(req, res) {
@@ -45,9 +54,15 @@ function addMovie(req, res) {
     });
 }
 
+function deleteMovies(req, res) {
+    movieRepository.removeAll(function () {
+        return res.send();
+    });
+}
+
 function addImage(req, res){
-    movieRepository.get(req.body._id, function(movie) {
-        movie.images[length] = req.body.imageUrl;
-        movieRepository.update(movie, function() { console.log("image inserted"); });
+    movieRepository.get(req.body.id, function (movie) {        
+        movie.images[movie.images.length] = req.body.url;
+        movieRepository.update(movie, function () { return res.send(); });
     });
 }
