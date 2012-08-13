@@ -30,7 +30,7 @@
         var testMovie = { id: 1, title: "movie1" };
 
         // Act
-        app.movieTable.init($("table"), $("#template"));
+        app.movieTable.init($("table"));
 
         dfd.resolveWith(null, [testMovie]);
         // Assert

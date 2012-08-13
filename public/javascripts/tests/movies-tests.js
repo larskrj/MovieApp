@@ -43,7 +43,7 @@
         var loadMovieStub = this.stub(app.movieTable, "loadMovies");
         
         // Act
-        app.movies.init($("table"), $("form"), $("#template"), $("#delete"), $("#dialog"));
+        app.movies.init($("table"), $("form"), $("#delete"), $("#dialog"));
         app.messages.publishMoviesUpdated();
 
         // Assert

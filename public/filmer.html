@@ -112,11 +112,10 @@
             imageUrl: '/api/movies/:id/images'
         };
 
-        $(document).ready(function () {
+        $(function () {
             app.movies.init(
                 $("#filmtabell"),
-                $("#nyFilmSkjema"),
-                $("#tableRowTemplate"),
+                $("#nyFilmSkjema"),         
                 $("#nullstillFilmer"),
                 $("#nyttBilde"));
         });

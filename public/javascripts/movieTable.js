@@ -45,9 +45,8 @@ app.movieTable = (function ($) {
         return bilder;
     };    
         
-    function init(table, rowTemplate) {
-        _table = table;
-        _rowTemplate = rowTemplate;
+    function init(table) {
+        _table = table;        
         loadMovies();
     }
 

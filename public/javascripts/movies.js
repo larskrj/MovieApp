@@ -7,9 +7,9 @@ app.movies = (function ($) {
         app.movieApi.deleteMovies().done(app.messages.publishMoviesUpdated);
     }
         
-    function init(table, form, rowTemplate, deleteMoviesButton, imageDialog) {       
+    function init(table, form, deleteMoviesButton, imageDialog) {       
         
-        app.movieTable.init(table, rowTemplate);
+        app.movieTable.init(table);
         
         app.movieForm.init(form);
 
