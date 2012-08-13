@@ -3,33 +3,29 @@
 var app = app || {};
 
 app.movieApi = (function () {
-
-    function addImage(id, url){
-        return $.post(app.settings.imageUrl, { movieId: id, imageUrl: url } , "json");
+    
+    function getMovies(callback) {
+        var url = app.settings.movieUrl;
+        return $.getJSON(url, callback);
     }
 
 	function addNewMovie(movie) {
-	    return $.post(app.settings.movieUrl, movie, "json");
+	    return $.post(app.settings.movieUrl, movie, null, "json");
 	}
-
-	function getMovies(callback) {
-		var url = app.settings.movieUrl;
-		return $.getJSON(url, callback);
-	}
-
+    
 	function deleteMovies() {
 	    return $.ajax({ url: app.settings.movieUrl, type: "delete" });
 	}
-
-	function init() {
-
+    
+	function addImage(id, imageUrl, callback) {
+	    var apiUrl = app.settings.imageUrl.replace(":id", id);
+	    $.post(apiUrl, { id: id, url: imageUrl }, callback, "json");
 	}
 
 	return {
-		init: init,
-		addNewMovie: addNewMovie,
+	    addNewMovie: addNewMovie,
 		getMovies: getMovies, 
 		addImage: addImage,
         deleteMovies: deleteMovies
 	};
-} ());
+}());

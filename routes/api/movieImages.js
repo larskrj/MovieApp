@@ -6,7 +6,7 @@ module.exports = function (app) {
 
 function addImage(req, res) {
     movieRepository.get(req.params.id, function (movie) {
-        movie.images[movie.images.length] = req.body.url;
+        movie.bilder[movie.bilder.length] = req.body.url;
         movieRepository.update(movie, function () { return res.send(); });
     });
 }

@@ -3,5 +3,5 @@ module.exports = function(app) {
 }
 
 function index(req, res) {
-   return res.render('index', { title: 'Filmer' });
+   return res.render('index', { title: 'Mesaninen - JavaScript' });
 }

@@ -1,16 +1,1 @@
-test av console.log
-
-node.js:201
-        throw e; // process.nextTick error, or 'error' event on first tick
-              ^
-GetConsoleTitleW: The operation completed successfully.
-ReferenceError: length is not defined
-    at C:\Users\larsj\Documents\My Web Sites\MovieApp\routes\api\movies.js:64:22
-    at C:\Users\larsj\Documents\My Web Sites\MovieApp\repositories\movieRepository.js:16:17
-    at C:\Users\larsj\Documents\Node.js-app\Node-js-app\node_modules\mongodb\lib\mongodb\cursor.js:133:9
-    at C:\Users\larsj\Documents\Node.js-app\Node-js-app\node_modules\mongodb\lib\mongodb\cursor.js:173:11
-    at C:\Users\larsj\Documents\Node.js-app\Node-js-app\node_modules\mongodb\lib\mongodb\cursor.js:467:35
-    at Cursor.close (C:\Users\larsj\Documents\Node.js-app\Node-js-app\node_modules\mongodb\lib\mongodb\cursor.js:687:5)
-    at Cursor.nextObject (C:\Users\larsj\Documents\Node.js-app\Node-js-app\node_modules\mongodb\lib\mongodb\cursor.js:467:17)
-    at Array.0 (C:\Users\larsj\Documents\Node.js-app\Node-js-app\node_modules\mongodb\lib\mongodb\cursor.js:165:12)
-    at EventEmitter._tickCallback (node.js:192:40)
+Express server listening on port NaN in development mode

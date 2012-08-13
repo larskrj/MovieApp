@@ -3,18 +3,10 @@
 var app = app || {};
 
 app.plugins = (function($) {
-
-    function activateTableFilter() {
-        $(".tablefilter").keyup(function() {
-            var tabellId = $(".tablefilter").data("tabellId");
-            $.uiTableFilter($("table"), this.value);
-        });
-    }
-
-    function activateTablePlugins() {
-        activateTableFilter();
+    
+    function activateTablePlugins() {        
         $('a.lightbox').lightBox({ fixedNavigation: true });
-        $("table").tablesorter({ widgets: ['zebra'] });
+        $("table.tablesorter").tablesorter({ widgets: ['zebra'] });
     }
 
     function activateFormPlugins() {

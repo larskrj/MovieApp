@@ -1,14 +1,13 @@
 Server:
-#	Validering
-
-#   Bytt til mogoose
 #   Fullt REST-API 
 #   Bedre løsning for index.html
 #   logging i iis
 #   test med buster?
 
 Klient
-#   tester: qUnit
+#	Oversett  til norsk
+#	Legg inn oppgave 2 osv i appe-en
+
+#	fjerne Handlebars?
 #   styling / html5
-#	form: div - fieldset - label
-#   handlebars vs plain html?
+#	form: div - fieldset - label?

@@ -65,4 +65,8 @@
         });
     };
 
+    d.unsubscribeAll = function () {
+        cache = {};
+    }
+
 })(jQuery);

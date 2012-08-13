@@ -1,4 +1,4 @@
-// lib/handlebars/base.js
+﻿// lib/handlebars/base.js
 var Handlebars = {};
 
 Handlebars.VERSION = "1.0.beta.6";
@@ -1162,11 +1162,11 @@ Handlebars.JavaScriptCompiler = function () { };
             }
 
             if (asObject) {
-                params.push(this.source.join("\n  "));
+                params.push(this.source.join("\n "));
 
                 return Function.apply(this, params);
             } else {
-                var functionSource = 'function ' + (this.name || '') + '(' + params.join(',') + ') {\n  ' + this.source.join("\n  ") + '}';
+                var functionSource = 'function ' + (this.name || '') + '(' + params.join(',') + ') {\n ' + this.source.join("\n ") + '}';
                 Handlebars.log(Handlebars.logger.DEBUG, functionSource + "\n\n");
                 return functionSource;
             }
@@ -1359,7 +1359,7 @@ Handlebars.JavaScriptCompiler = function () { };
                 child = children[i];
                 compiler = new this.compiler();
 
-                this.context.programs.push('');     // Placeholder to prevent name conflicts for nested children
+                this.context.programs.push(''); // Placeholder to prevent name conflicts for nested children
                 var index = this.context.programs.length;
                 child.index = index;
                 child.name = 'program' + index;

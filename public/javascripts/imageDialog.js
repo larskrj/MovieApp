@@ -3,50 +3,49 @@
 var app = app || {};
 
 app.imageDialog = (function () {
-    var dialogId;
+    var _dialog;
 
-
-    function activateNewImageDialog(tabellId) {
-        var dialog = $(dialogId);
-
-        dialog.dialog({
+    function activateNewImageDialog() {
+        _dialog.dialog({
             autoOpen: false,
-            height: 300,
+            height: 150,
             width: 350,
             modal: true,
-            buttons: {
-                "Lagre": function () {
-                    $.post(
-                        //dialog.find("form").attr("action"),
-                        "api/movies/" + dialog.find("input[type=hidden]").val() + "/images",
-                        dialog.find("form").serialize(),
-                        function (movies) {
-                            $.publish(app.messages.moviesUpdated);
-                        },
-                        "json"
-                    );
-                    $(this).dialog("close");
-                },
-                "Avbryt": function () {
-                    $(this).dialog("close");
+            buttons: [
+                {   
+                    text: "Lagre",
+                    click: function () {
+                        app.movieApi.addImage(
+                            _dialog.find("#movieId").val(),
+                            _dialog.find("#imageUrl").val(),
+                            app.messages.publishMoviesUpdated);
+                        $(this).dialog("close");
+                    },
+                },{
+                    text: "Avbryt",
+                    click: function () {
+                        $(this).dialog("close");
+                    }
                 }
-            }
-        });
-    };
+            ]        
+        });      
+};
 
-    function activateNewImageButtons() {
-        $(".nyttBildeKnapp").live("click", function () {
-            $(dialogId).dialog("open");
-            $(dialogId).find("input[type=hidden]").val($(this).data("filmId"));
-            $(dialogId).find("input[type=text]").val("");
-        });
-    };
-    function init() {
-        dialogId = "#nyttBilde"
-        activateNewImageDialog("#filmtabell");
-        activateNewImageButtons();
-    }
+function activateNewImageButtons(movieTable) {
+    
+    movieTable.on("click", ".nyttBildeKnapp", function () {        
+        _dialog.dialog("open");
+        _dialog.find("input[type=hidden]").val($(this).data("filmId"));
+        _dialog.find("input[type=text]").val("");
+    });
+};
+function init(dialog, movieTable) {    
+    _dialog = dialog;
+    
+    activateNewImageDialog(movieTable);
+    activateNewImageButtons(movieTable);
+}
 
-    return { init: init };
+return { init: init };
 
 })();

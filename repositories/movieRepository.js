@@ -22,7 +22,7 @@ function get(id, callback){
 function getAll(callback){    
         db.open(function(err, db) {
             db.collection(collectionName, function(err2, collection) {
-                collection.find().toArray(function(err3, results) {                    
+                collection.find().sort({ _id: 1 }).toArray(function (err3, results) {
                     db.close();
                     callback(results);                    
                 });
@@ -53,7 +53,7 @@ function update(movie, callback) {
             var _id = movie._id;//new db.bson_serializer.ObjectID(movie._id);
             collection.update(
                 { _id: _id },
-                { $set: { images: movie.images } },
+                { $set: { bilder: movie.bilder } },
                 { safe: true },
                 function (err3) {                    
                     db.close();

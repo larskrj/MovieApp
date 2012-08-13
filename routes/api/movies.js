@@ -39,19 +39,40 @@ function getDateAsEpoch(dateString){
     return parseInt(dateString, 10);
 }
 
-function addMovie(req, res) {
+function addMovie(req, res, next) {
     var movie = {
-		title: req.body.title,
-		director: req.body.director,       
-        releasedate: getDateAsEpoch(req.body.releasedate),
-        comment: req.body.comment,
-        images: []
+		tittel: req.body.tittel,
+		regissor: req.body.regissor,       
+        lanseringsdato: getDateAsEpoch(req.body.lanseringsdato),
+        kommentar: req.body.kommentar,
+        bilder: []
 	};
     
+    if (validateMovie(movie) != "") {
+        var err = new Error(validateMovie(movie));
+        err.type = 'validation';
+        next(err);
+        return;
+    }
+
     movieRepository.insert(movie, function(movies) {
         res.header('location', '/api/movies');
         return res.send(movies);
     });
+}
+
+function validateMovie(movie) {
+    if (!movie.tittel)
+        return "Mangler tittel";
+        
+    if (!movie.lanseringsdato)
+        return "Mangler dato";
+
+    if (movie.releasedate < new Date(1850, 0, 1).getTime() || new Date(movie.releasedate).getFullYear() > new Date().getFullYear() + 2)
+        return "Ugyldig dato";
+
+
+    return "";
 }
 
 function deleteMovies(req, res) {
@@ -66,3 +87,4 @@ function addImage(req, res){
         movieRepository.update(movie, function () { return res.send(); });
     });
 }
+
