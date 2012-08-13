@@ -1,5 +1,4 @@
 ﻿/// <reference path="../libs/jquery-1.8.0.js" />
-/// <reference path="../libs/handlebars.js" />
 
 /// <reference path="../movieTable.js" />
 /// <reference path="../messages.js" />

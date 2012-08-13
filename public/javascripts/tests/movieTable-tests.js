@@ -1,5 +1,4 @@
 ﻿/// <reference path="../libs/jquery-1.8.0.js" />
-/// <reference path="../libs/handlebars.js" />
 
 /// <reference path="../utils.js" />
 /// <reference path="../movieTable.js" />
@@ -19,8 +18,6 @@
     module("movieTable");
 
     QUnit.testStart(function () {        
-        Handlebars.compile = sinon.stub();
-        Handlebars.compile.returns(sinon.stub());
     });
 
     function _test() { }

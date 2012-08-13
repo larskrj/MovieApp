@@ -94,8 +94,7 @@
     <script type="text/javascript" src="javascripts/libs/jquery.lightbox-0.5.js"> </script>
     <script type="text/javascript" src="javascripts/libs/jquery-pubsub.js"></script>
     <script type="text/javascript" src="javascripts/libs/localization/methods_de.js"> </script>
-    <script type="text/javascript" src="javascripts/libs/handlebars.js"></script>
-
+    
     <!-- scripts -->
     <script type="text/javascript" src="javascripts/utils.js"> </script>
     <script type="text/javascript" src="javascripts/messages.js"></script>
@@ -105,22 +104,7 @@
     <script type="text/javascript" src="javascripts/movieTable.js"></script>
     <script type="text/javascript" src="javascripts/movieForm.js"></script>
     <script type="text/javascript" src="javascripts/movies.js"> </script>
-  
-    <script type="text/x-handlebars-template" id="tableRowTemplate">
-		{{#each this}}
-        <tr>            
-		    <td> {{ tittel }} </td>
-		    <td> {{ regissor }} </td>
-		    <td> {{ convertDate lanseringsdato }}</td>		    
-			<td> {{#each bilder}}
-                    <a class='lightbox' href='{{ this }}'><img class='thumbnail' src='{{ this }}'/></a>
-                  {{/each}}  
-            <input type='hidden' value= '{{ _id  }}' class="_movie_id" />
-            <input type='button' class='nyttBildeKnapp' value='+' data-film-id='{{ _id  }}'/></td>
-		 </tr>
-        {{/each}}
-	</script>
-    
+      
     <script type="text/javascript">
         var app = app || {};
         app.settings = app.settings || {

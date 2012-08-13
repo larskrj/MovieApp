@@ -8,6 +8,5 @@ Klient
 #	Oversett  til norsk
 #	Legg inn oppgave 2 osv i appe-en
 
-#	fjerne Handlebars?
 #   styling / html5
 #	form: div - fieldset - label?

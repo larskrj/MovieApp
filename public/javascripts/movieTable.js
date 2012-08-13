@@ -9,22 +9,42 @@ app.movieTable = (function ($) {
     function loadMovies() {
         app.movieApi.getMovies()
             .fail(app.utils.logError)
-            .done(addMoviesToTable)
-            .done(app.messages.publishMoviesLoaded);
+            .done(addMoviesToTable);
     }
 
     function addMoviesToTable(movies) {
+        var i;
         _table.find("tbody").empty();
         
         if (!movies || movies.length == 0)
-            return;
-
-        var source = _rowTemplate.html();
-        var template = Handlebars.compile(source);
-        Handlebars.registerHelper("convertDate", app.utils.convertToNorwegianDate);
-        _table.find("tbody").append(template(movies));
+            return;               
+        
+        for(i = 0; i < movies.length; i++) {
+            _table.find("tbody").append(lagTabellRad(movies[i]));
+        }
+        
+        app.messages.publishMoviesLoaded();
     }
 
+    function lagTabellRad(film) {
+        return "<tr>" +                 
+                 "<td>" + film.tittel + "</td>" +
+                 "<td>" + film.regissor + "</td>" +
+                 "<td>" + app.utils.convertToNorwegianDate(film.lanseringsdato) + "</td>" +
+                 "<td>" + leggTilBilder(film) + "<input type='button' class='nyttBildeKnapp' value='+' data-film-id='" + film._id + "'/></td>" +
+               "</tr>";
+    };
+
+    function leggTilBilder(film) {
+        var bilder = "";
+
+        $.each(film.bilder, function(i, bilde) {
+            bilder += "<a class='lightbox' href='" + bilde + "'><img class='thumbnail' src='" + bilde + "'/></a>";
+        });
+
+        return bilder;
+    };    
+        
     function init(table, rowTemplate) {
         _table = table;
         _rowTemplate = rowTemplate;
