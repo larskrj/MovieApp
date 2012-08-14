@@ -3,23 +3,25 @@
 var movieRepository = require('../../repositories/movieRepository');
 var seedDatabase = require('../../seedDatabase');
 
-module.exports = function(app) {
-    app.get('/api/movies/create', createDatabase);
+module.exports = function(app) {    
     app.get('/api/movies', getMovies);
+    app.get('/api/movies/:id', getMovie);
     app.post('/api/movies', addMovie);
     app.del('/api/movies', deleteMovies);
+    app.del('/api/movies/:id', deleteMovie);
     app.post('/api/movies/images', addImage);
-}
-
-function createDatabase(req, res) {
-    seedDatabase();
-    setTimeout(function () { getMovies(req, res); }, 1000)
 }
 
 function getMovies(req, res) {
     movieRepository.getAll(function(movies) {
         res.header('location', '/api/movies');
         return res.send(movies);
+    });
+}
+
+function getMovie(req, res) {
+    movieRepository.get(req.params.id, function (movie) {
+        return res.send(movie);
     });
 }
 
@@ -55,9 +57,9 @@ function addMovie(req, res, next) {
         return;
     }
 
-    movieRepository.insert(movie, function(movies) {
-        res.header('location', '/api/movies');
-        return res.send(movies);
+    movieRepository.insert(movie, function(insertedMovie) {
+        res.header('location', '/api/movies/' + insertedMovie._id);
+        return res.send(insertedMovie);
     });
 }
 
@@ -75,9 +77,17 @@ function validateMovie(movie) {
     return "";
 }
 
+function deleteMovie(req, res) {
+    movieRepository.remove(req.params.id, function () {
+        return res.send();
+    });
+}
+
 function deleteMovies(req, res) {
     movieRepository.removeAll(function () {
-        return res.send();
+        seedDatabase.seed(0, function () {
+            return res.send();
+        });
     });
 }
 

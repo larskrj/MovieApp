@@ -9,6 +9,11 @@ app.movieApi = (function () {
         return $.getJSON(url, callback);
     }
 
+    function getMovie(id, callback) {
+        var url = app.settings.movieUrl + "/" + id;
+        return $.getJSON(url, callback);
+    }
+
 	function addNewMovie(movie) {
 	    return $.post(app.settings.movieUrl, movie, null, "json");
 	}
@@ -24,7 +29,8 @@ app.movieApi = (function () {
 
 	return {
 	    addNewMovie: addNewMovie,
-		getMovies: getMovies, 
+	    getMovies: getMovies,
+	    getMovie: getMovie,
 		addImage: addImage,
         deleteMovies: deleteMovies
 	};

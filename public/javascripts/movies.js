@@ -3,8 +3,10 @@
 var app = app || {};
 
 app.movies = (function ($) {
-    function deleteMovies() {
-        app.movieApi.deleteMovies().done(app.messages.publishMoviesUpdated);
+    function deleteMovies(e) {        
+        if (confirm($(this).data("confirm-message")))
+            app.movieApi.deleteMovies().done(app.messages.publishMoviesUpdated);
+        
     }
         
     function init(table, form, deleteMoviesButton, imageDialog) {       
@@ -13,13 +15,13 @@ app.movies = (function ($) {
         
         app.movieForm.init(form);
 
-        app.plugins.activateFormPlugins();
+        app.plugins.activateDatePickerPlugin();
         app.imageDialog.init(imageDialog, table);
 
         deleteMoviesButton.click(deleteMovies);
                                
         $.subscribe(app.messages.moviesUpdated, app.movieTable.loadMovies);
-        $.subscribe(app.messages.moviesLoaded, function () { app.plugins.activateTablePlugins(table); });                
+        $.subscribe(app.messages.moviesLoaded, function () { app.plugins.activateLightBoxPlugin(table); });                
     }
 
     return {

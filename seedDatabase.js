@@ -32,11 +32,14 @@ var defaultMovies = [
       "bilder": []
     }
 ];
-function seed(i){
+function seed(i, callback){
     i = i || 0;
 
     if (i < defaultMovies.length)
-        movieRepository.insert(defaultMovies[i], function() { seed(i + 1); });            
+        movieRepository.insert(defaultMovies[i], function () { seed(i + 1, callback); });
+    else
+        if (callback)
+            callback();
 }
 
 exports.seed = seed;

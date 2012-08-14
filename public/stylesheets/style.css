@@ -203,6 +203,29 @@ table th {
     border: solid 1px #e8eef4;
 }
 
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 10px;
+}
+
+table th {
+    border: 1px solid gray;
+    padding: 5px;
+    text-align: left;
+}
+
+table td {
+    border: 1px solid gray;
+    padding: 5px;
+}
+
+table#filmtabell tr:nth-child(2n+1) {
+    background-color:#F0F0F6;
+}
+
+
+    
 /* MISC  
 ----------------------------------------------------------*/
 .clear {
@@ -246,23 +269,6 @@ div#title {
 
 .validation-summary-valid {
     display: none;
-}
-
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    margin-bottom: 10px;
-}
-
-table th {
-    border: 1px solid gray;
-    padding: 5px;
-    text-align: left;
-}
-
-table td {
-    border: 1px solid gray;
-    padding: 5px;
 }
 
 h1, h2, h3, h4, h5, h6, p {

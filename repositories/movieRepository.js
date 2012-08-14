@@ -10,7 +10,7 @@ function get(id, callback){
     }
     db.open(function (err, db) {
         db.collection(collectionName, function (err2, collection) {
-            var _id = new db.bson_serializer.ObjectID(id);
+            var _id = getBsonId(id);
             collection.find({"_id" : _id }).toArray(function(err3, results) {                    
                 db.close();
                 callback(results[0]);                    
@@ -39,7 +39,7 @@ function insert(movie, callback) {
                 console.log('Document ID is: ' + documents[0]._id);
                 movie._id = documents[0]._id;
                 db.close();
-                callback([movie]);
+                callback(movie);
             });
         });
     });
@@ -50,7 +50,7 @@ function update(movie, callback) {
 
     db.open(function (err, db) {
         db.collection(collectionName, function (err2, collection) {
-            var _id = movie._id;//new db.bson_serializer.ObjectID(movie._id);
+            var _id = movie._id;
             collection.update(
                 { _id: _id },
                 { $set: { bilder: movie.bilder } },
@@ -74,9 +74,28 @@ function removeAll(callback){
         });
 }
 
-exports.get = get;
-exports.getAll = getAll;
-exports.insert = insert;
-exports.update = update;
-exports.removeAll = removeAll;    
+function remove(id, callback) {
+    var _id = getBsonId(id);
+    db.open(function (err, db) {
+        db.collection(collectionName, function (err2, collection) {
+            collection.remove({_id: _id }, function () {
+                db.close();
+                callback();
+            });
+        });
+    });
+}
+
+function getBsonId(id){
+    return new db.bson_serializer.ObjectID(id);
+}
+
+module.exports = {
+    get: get,
+    getAll: getAll,
+    insert: insert,
+    update: update,
+    removeAll: removeAll,
+    remove: remove
+};
 
