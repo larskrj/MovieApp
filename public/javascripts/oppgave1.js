@@ -1,4 +1,6 @@
-﻿(function() {
+﻿(function () {
+    "use strict";
+    
     console.log("test");
 
     var film = {
@@ -6,7 +8,6 @@
         lanseringsdato: new Date(2011, 2, 12),
         regissor: { fornavn: "John", etternavn: "Doe" },
         bilder: ["http://blabla.com/bilde.jpg"],
-        
         skrivUt: function () {
             console.log("tittel: " + this.tittel);
         }

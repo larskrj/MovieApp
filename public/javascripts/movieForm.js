@@ -4,7 +4,7 @@ var app = app || {};
 
 app.movieForm = (function ($) {
     var _form;
-
+    
     function saveMovie(event) {
         event.preventDefault();
         var saveButton = _form.find("input[type=submit]");        

@@ -35,7 +35,7 @@
         sandbox.stub(app.plugins, "activateFormPlugins");
     }
 
-    test("init should set up subscription for moviesUpdated", function () {
+    _test("init should set up subscription for moviesUpdated", function () {
 
         // Arrange
         setUpStubs(this.sandbox);
