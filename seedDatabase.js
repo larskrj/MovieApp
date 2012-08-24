@@ -5,13 +5,13 @@ var defaultMovies = [
       "tittel": "The Shawshank Redemption",
       "regissor": "Frank Darabont",
       "lanseringsdato": 789346800000,      
-      "bilder": ["http://ia.media-imdb.com/images/M/MV5BMTM0NjUxMDk5MF5BMl5BanBnXkFtZTcwNDMxNDY3Mw@@._V1._SX640_SY427_.jpg", "http://ia.media-imdb.com/images/M/MV5BMTMxNzAwMzE0Nl5BMl5BanBnXkFtZTcwNDQxNDY3Mw@@._V1._SX640_SY423_.jpg"]
+      "bilder": ["/images/TheShawshankRedemption1.jpg", "/images/TheShawshankRedemption2.jpg"]
     },
     { 
       "tittel": "The Godfather",
       "regissor": "Francis Ford Coppola",
       "lanseringsdato": 70239600000,      
-      "bilder": ["http://ia.media-imdb.com/images/M/MV5BMjA0MDIwMDYwNl5BMl5BanBnXkFtZTcwMjY0Mzg4Mw@@._V1._SX640_SY474_.jpg"]
+      "bilder": ["/images/TheGodfather1.jpg"]
     },
     {  
       "tittel": "Den gode, den onde og den grusomme",
@@ -23,7 +23,7 @@ var defaultMovies = [
       "tittel": "Star Wars",
       "regissor": "George Lucas",
       "lanseringsdato": 231285600000,    
-      "bilder": ["http://ia.media-imdb.com/images/M/MV5BMTQ5OTgxNDAxNF5BMl5BanBnXkFtZTcwODIxMzA4NA@@._V1._SX640_SY430_.jpg", "http://ia.media-imdb.com/images/M/MV5BMjA4OTkzNDMwMl5BMl5BanBnXkFtZTcwMDMxMzA4NA@@._V1._SX640_SY644_.jpg"]
+      "bilder": ["/images/StarWars1.jpg", "/images/StarWars2.jpg"]
     },
     { 
       "tittel": "Rise of the Planet of the Apes Poster \t",

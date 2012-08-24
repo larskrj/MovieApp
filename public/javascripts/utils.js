@@ -10,7 +10,7 @@ app.utils = (function () {
             return number;
         }; 
     
-    function konverterDato(datoEpoch) {
+    function convertToNorwegianDate(datoEpoch) {
         var dato = new Date(datoEpoch);
 
         return addZeroIfOneDigit(dato.getDate()) + "." + addZeroIfOneDigit(dato.getMonth() + 1) + "." + dato.getFullYear();
@@ -23,6 +23,6 @@ app.utils = (function () {
 
     return {
         logError: logError,
-        convertToNorwegianDate: konverterDato
+        convertToNorwegianDate: convertToNorwegianDate
     };
 })();

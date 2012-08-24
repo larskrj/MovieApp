@@ -1,21 +1,45 @@
-﻿(function () {
+﻿/// <reference path="libs/jquery-1.8.0.js" />
+/// <reference path="utils.js" />
+
+(function () {
     "use strict";
     
-    console.log("test");
+    function skrivUt(tekst) {
+        $("#content").append(tekst).append("<br />");
+    }
 
-    var film = {
-        tittel: "En fin film",
-        lanseringsdato: new Date(2011, 2, 12),
-        regissor: { fornavn: "John", etternavn: "Doe" },
-        bilder: ["http://blabla.com/bilde.jpg"],
-        skrivUt: function () {
-            console.log("tittel: " + this.tittel);
+    // Oppgave 1a
+    skrivUt("Hallo World!");
+    
+    // Oppgave 1b
+    var skrivUt2 = skrivUt;
+    skrivUt2("Hallo fra skrivUt2!");
+    
+    // Oppgave 1c
+    var film1 = {
+        tittel: "Star Wars",
+        lanseringsdato: new Date(1977, 4, 1),
+        regissor: { fornavn: "George", etternavn: "Lucas" },
+        bilder: ["images/StarWars1.jpg",
+                 "images/StarWars2.jpg"],
+        skrivUtFilm: function () {
+            var i,
+                filmInfoHtml = [
+                "<h3>" + this.tittel + "</h3>",
+                "<div>Lanseringsdato: " + app.utils.convertToNorwegianDate(this.lanseringsdato) + "</div>",
+                "<div>Regissør: " + this.regissor.fornavn + " " + this.regissor.etternavn + "</div><div>"].join("");
+            
+            for (i = 0; i < this.bilder.length; i++) {
+                filmInfoHtml += "<img src='" + this.bilder[i] + "' class='thumbnail' />";
+            }
+            filmInfoHtml += "</div>";
+            
+            skrivUt(filmInfoHtml);
         }
     };
-    var Person = function(fornavn, etternavn) {
-        this.fornavn = fornavn;
-        this.etternavn = etternavn;
-    };
+    film1.skrivUtFilm();
+
+    // Oppgave 1d
     var Film = function(tittel, lanseringsdato, regissor, bilder) {
         this.tittel = tittel;
         this.lanseringsdato = lanseringsdato;
@@ -23,12 +47,19 @@
         this.bilder = bilder;
     };
 
-    var regissor1 = new Person("Hans", "Nilsen");
-    var film2 = new Film("ny film", new Date(2012, 0, 1), regissor1, []);
-    Film.prototype.skrivUt = film.skrivUt;
-    film.skrivUt();
-    film.skrivUt.apply(film2);
+    
+    var film2 = new Film("The Godfather", new Date(1972, 2, 24), { fornavn: "Francis Ford", etternavn: "Coppola" }, ["images/TheGodfather1.jpg"]);
 
-    setTimeout(function () { film2.skrivUt(); }, 2000);
-    setTimeout(film2.skrivUt, 2000);
+    // Oppgave 1e
+    film1.skrivUtFilm.apply(film2);
+
+    // Oppgave 1f
+    Film.prototype.skrivUtFilm = film1.skrivUtFilm;
+    film2.skrivUtFilm();
+    
+    // Oppgave 1g
+    setTimeout(function () { film1.skrivUtFilm(); }, 2000);
+    
+    // Oppgave 1h
+    skrivUt("Dagens dato på norsk format: " + app.utils.convertToNorwegianDate(new Date()));
 })();

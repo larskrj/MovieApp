@@ -22,8 +22,8 @@ app.movies = (function ($) {
 
         deleteMoviesButton.click(deleteMovies);
                                
-        $.subscribe(app.messages.moviesUpdated, app.movieTable.loadMovies);
-        $.subscribe(app.messages.moviesLoaded, function () { app.plugins.activateLightBoxPlugin(table); });                
+        PubSub.subscribe(app.messages.moviesUpdated, app.movieTable.loadMovies);
+        PubSub.subscribe(app.messages.moviesLoaded, function () { app.plugins.activateLightBoxPlugin(table); });
     }
 
     return {

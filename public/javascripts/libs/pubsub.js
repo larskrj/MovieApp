@@ -1,4 +1,4 @@
-﻿; (function (d) {
+﻿; (function ($, d) {
 
     // the topic/subscription hash
     var cache = {};
@@ -20,7 +20,7 @@
         if (!cache[topic]) {
             return;
         }
-        d.each(cache[topic], function () {
+        $.each(cache[topic], function () {
             this.apply(d, args || []);
         });
     };
@@ -58,15 +58,18 @@
         //	|	$.unsubscribe(handle);
 
         var t = handle[0];
-        cache[t] && d.each(cache[t], function (idx) {
+        cache[t] && $.each(cache[t], function (idx) {
             if (this == handle[1]) {
                 cache[t].splice(idx, 1);
             }
         });
     };
 
-    d.unsubscribeAll = function () {
-        cache = {};
-    }
+    d.unsubscribeAll = function() {
+        cache = { };
+    };
 
-})(jQuery);
+    window.PubSub = d;
+
+})(jQuery, {});
+

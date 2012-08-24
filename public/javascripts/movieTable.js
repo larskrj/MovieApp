@@ -21,29 +21,29 @@ app.movieTable = (function ($) {
             return;               
         
         for(i = 0; i < movies.length; i++) {
-            _table.find("tbody").append(lagTabellRad(movies[i]));
+            _table.find("tbody").append(createTableRow(movies[i]));
         }
         
         app.messages.publishMoviesLoaded();
     }
 
-    function lagTabellRad(film) {
+    function createTableRow(movie) {
         return "<tr>" +                 
-                 "<td>" + film.tittel + "</td>" +
-                 "<td>" + film.regissor + "</td>" +
-                 "<td>" + app.utils.convertToNorwegianDate(film.lanseringsdato) + "</td>" +
-                 "<td>" + leggTilBilder(film) + "<input type='button' class='nyttBildeKnapp' value='+' data-film-id='" + film._id + "'/></td>" +
+                 "<td>" + movie.tittel + "</td>" +
+                 "<td>" + movie.regissor + "</td>" +
+                 "<td>" + app.utils.convertToNorwegianDate(movie.lanseringsdato) + "</td>" +
+                 "<td>" + addImages(movie) + "<input type='button' class='nyttBildeKnapp' value='+' data-film-id='" + movie._id + "'/></td>" +
                "</tr>";
     };
 
-    function leggTilBilder(film) {
-        var bilder = "";
+    function addImages(movie) {
+        var images = "";
 
-        $.each(film.bilder, function(i, bilde) {
-            bilder += "<a class='lightbox' href='" + bilde + "'><img class='thumbnail' src='" + bilde + "'/></a>";
+        $.each(movie.bilder, function(i, image) {
+            images += "<a class='lightbox' href='" + image + "'><img class='thumbnail' src='" + image + "'/></a>";
         });
 
-        return bilder;
+        return images;
     };    
         
     function init(table) {

@@ -7,8 +7,7 @@
 (function () {
     module("movieApi");
 
-    var server,
-        ajaxSpy;
+    var server;
 
     QUnit.testStart(function () {
         server = sinon.fakeServer.create();
@@ -19,20 +18,41 @@
         server.restore();        
     });     
 
+    function setupServerForGetMovies(data) {
+        app.settings = { movieUrl: "/api/movies" };
+
+        server.respondWith(
+            "GET",
+            app.settings.movieUrl,
+            [200, { "Content-Type": "application/json" }, JSON.stringify(data)]);
+
+    }
+
     function _test() { }
+
+    test("getMovies should get movies and use callback", function () {
+        // Arrange        
+        var data = [{ id: 12, title: "movie1" }],
+            callback = sinon.spy();
+
+        setupServerForGetMovies(data);
+
+        // Act
+        app.movieApi.getMovies(callback);
+        server.respond();
+
+        // Assert
+        ok(callback.calledOnce, "Forventer ett kall, antall: " + callback.callCount);
+        ok(callback.calledWith(data), "Forventer at filmer blir returnert");
+    });
 
     test("getMovies should return deferred with movies", function () {
         // Arrange        
         var data = [{ id: 12, title: "movie1" }],
             callback = sinon.spy();
 
-        app.settings = { movieUrl: "/api/movies" };
-
-        server.respondWith(
-            "GET",
-            app.settings.movieUrl,
-            [200, { "Content-Type": "application/json" }, JSON.stringify(data) ]);        
-
+        setupServerForGetMovies(data);
+       
         // Act
         app.movieApi.getMovies().done(callback);
         server.respond();

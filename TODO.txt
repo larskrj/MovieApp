@@ -1,14 +1,12 @@
 Server:
 #   Fullt REST-API 
-#   Bedre løsning for index.html
+#   Bedre løsning for index.html (benytte routing for statiske filer?)
 #   logging i iis
 #   test med buster?
 
 Klient
 #	Oversett  til norsk
 #	Fjern deferred utenfor movieApi
-#	Legg inn oppgave 2 osv i appe-en
-
 #	legge til bilde i form?
 #   styling / html5
 #	form: div - fieldset - label?
