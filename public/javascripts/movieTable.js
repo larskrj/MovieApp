@@ -3,8 +3,9 @@
 var app = app || {};
 
 app.movieTable = (function ($) {
-    var _rowTemplate,
-        _table;
+    "use strict";
+
+    var _table;
 
     function loadMovies() {
         app.movieApi.getMovies()

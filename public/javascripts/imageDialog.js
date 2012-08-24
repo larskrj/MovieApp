@@ -3,6 +3,7 @@
 var app = app || {};
 
 app.imageDialog = (function () {
+    "use strict";
     var _dialog;
 
     function activateNewImageDialog() {

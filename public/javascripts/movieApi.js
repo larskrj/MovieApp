@@ -3,6 +3,7 @@
 var app = app || {};
 
 app.movieApi = (function () {
+    "use strict";
     
     function getMovies(callback) {
         var url = app.settings.movieUrl;

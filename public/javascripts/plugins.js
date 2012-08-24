@@ -3,7 +3,8 @@
 var app = app || {};
 
 app.plugins = (function($) {
-    
+    "use strict";
+
     function activateLightBoxPlugin() {        
         $('a.lightbox').lightBox({ fixedNavigation: true });        
     }

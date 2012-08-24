@@ -2,7 +2,9 @@
 
 var app = app || {};
 
-app.utils = (function() {
+app.utils = (function () {
+    "use strict";
+    
     function addZeroIfOneDigit (number) {
             if (number < 10) return "0" + number;
             return number;

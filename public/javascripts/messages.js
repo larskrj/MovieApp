@@ -1,7 +1,8 @@
 ﻿var app = app || {};
 
 (function () {
-
+    "use strict";
+    
     app.messages = {
         moviesUpdated: "moviesUpdated",
         publishMoviesUpdated: function () { $.publish(app.messages.moviesUpdated); },

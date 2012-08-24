@@ -3,6 +3,8 @@
 var app = app || {};
 
 app.movieForm = (function ($) {
+    "use strict";
+
     var _form;
     
     function saveMovie(event) {
