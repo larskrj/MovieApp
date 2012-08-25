@@ -3,14 +3,14 @@
 var movieRepository = require('../../repositories/movieRepository');
 var seedDatabase = require('../../seedDatabase');
 
-module.exports = function(app) {    
+module.exports = function(app) {
     app.get('/api/movies', getMovies);
     app.get('/api/movies/:id', getMovie);
     app.post('/api/movies', addMovie);
     app.del('/api/movies', deleteMovies);
     app.del('/api/movies/:id', deleteMovie);
     app.post('/api/movies/images', addImage);
-}
+};
 
 function getMovies(req, res) {
     movieRepository.getAll(function(movies) {

@@ -1,4 +1,9 @@
-﻿; (function ($, d) {
+﻿// Hentet fra https://gist.github.com/1596136 - Option 4
+// Noen endringer
+// - opprettet nytt objekt PubSub istedenfor å benytte jQuery
+// - lagt til unsubscribeAll for enklere å rense opp ifm tester
+
+; (function ($, d) {
 
     // the topic/subscription hash
     var cache = {};

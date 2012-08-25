@@ -29,4 +29,4 @@ app.movieForm = (function ($) {
     }
 
     return { init: init };
-})();
+})(jQuery);

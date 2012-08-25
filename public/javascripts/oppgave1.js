@@ -61,5 +61,5 @@
     setTimeout(function () { film1.skrivUtFilm(); }, 2000);
     
     // Oppgave 1h
-    skrivUt("Dagens dato på norsk format: " + app.utils.convertToNorwegianDate(new Date()));
+    skrivUt("Dagens dato med norsk format: " + app.utils.convertToNorwegianDate(new Date()));
 })();
