@@ -1,82 +1,57 @@
 ﻿$(function () {
     "use strict";
-    // Funksjoner
-    function summer(a, b) {
-    	var sum = a + b; 
-    	return sum;
-    }
-    
-   
-    
-    //console.log(
-    (function(a, b){
-    	return a + b;
-    })(2, 5)
-    //);
-    
-    // ...Nestet funksjon
-    function hei(navn) {
-    	function skrivUt() {
-    		console.log("HEI " + navn);
-    	}
-    	skrivUt();
-    }
-    
-    // hei("Per");
-    
-    // .. Kan tilordnes variable
-    var summer2 = function(a, b){
-    	return a + b;
-    };
-    
-    
-    // ...Kan sendes som parametere
-  	function logger(noe) {
-    	console.log("LOGG: " + noe);
-    };
-	
-    function summer3(a, b, loggFn) {
-    	var sum = a + b;
-	    loggFn(sum);
-	};
-	// console.log( summer3(2, 4, logger));
-	
-	// ...Kan ha properties og funksjoner
-    summer4.sum = 0;
-    summer4.skrivSum = function(tall) {
-       	   console.log("Sum: " + tall);
-  	};
 
-   	function summer4(a, b) {
-   	 summer4.sum = a + b; 
-   	 summer4.skrivSum(summer4.sum);
-   	}
-   	
-   	// summer4(4, 5);
-   	// console.log(summer4.skrivSum);
+  /************
+   * Funksjoner
+   ************/
+  // Funksjonsdeklarasjon
+  function adder(a, b) {
+      return a + b;
+  }
+  // En funksjon som tilordnes en variabel
+  var a = function(){return "Hei!"};
+
+  // En funksjon som opprettes med konstruktør
+  var adder = new Function("a", "b", "return a + b;");
+
+  // Funksjonskall
+  adder(2, 2)
+  adder.call(this, 2, 2)
+
+  // Funksjon som parametere
+  function logger(f, a, b) {
+      console.log(f(a, b));
+  }
+
+  // Funksjon med metode
+  function f1() {}
+  f.f2 = function() {return "HEI";};
+  f.prop = "HOY";
+  // f.f2()
 
 
-   	// Scope
-   	function testScope() {
-        // Denne blir nå tilgjengeliggjort i globalt scope
-        globalVariabel = "global";
-
-        // Denne er bare tilgjengelig i funksjonen
-        var lokalVariabel = "lokal";
-
-        // Lager variabelen i i funksjonens scope, ikke løkkens scope
-        for (var i = 0; i < 2; i++) {
-          console.log(i);
-        }
-
-        // Variabelen i er allerede deklarert - kan gi uønskede effekter
-        for (var i = 0; i < 2; i++) {
-           console.log(i);
-        }
+  /*******
+   * Scope
+   *******/
+  // Lokalt scope:
+  function f2() {
+      var lokalFunksjon = function() {
+          return "Lokal pokal";
       }
+  }
+  // ... samme som
+  function f3() {
+      function lokalFunksjon() {
+          return "Gjeddekaker";
+      }
+  }
 
-    
-    
+  // Globalt scope
+  function f4() {
+      globalFunksjon = function() {
+          return "GLOBAL";
+      }
+  }
 
     // Objekter
     var person = {
@@ -93,7 +68,7 @@
     person.alertNavnOgAlder = function () { alert(this.navn() + " - " + this.alder); };
 
     // Closure
-    var f1 = function () {
+    var f5 = function () {
         var v = "123";
 
         return function () {
@@ -101,8 +76,8 @@
         };
     };
 
-    var f2 = f1();
-    f2();
+    var f6 = f5();
+    f6();
 
     // Callback
     setTimeout(function () { person.logPerson(); }, 2000);
@@ -147,7 +122,7 @@
     // Deferred
 
     var def = $.getJSON("/api/movies");
-    //var def = new $.Deferred(); // 
+    //var def = new $.Deferred(); //
 
     def.done(suksess)
         .always(kallesAlltid)
