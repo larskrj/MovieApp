@@ -1,7 +1,4 @@
-/// <reference path="../../repositories/movieRepository.js" />
-
-var movieRepository = require('../../repositories/movieRepository');
-var seedDatabase = require('../../seedDatabase');
+var movieRepository = require('../../repositories/inMemoryMovieRepository');
 
 module.exports = function(app) {
     app.get('/api/movies', getMovies);
@@ -20,9 +17,10 @@ function getMovies(req, res) {
 }
 
 function getMovie(req, res) {
-    movieRepository.get(req.params.id, function (movie) {
-        return res.send(movie);
-    });
+    movieRepository.get(req.params.id, 
+        function (movie) {
+            return res.send(movie);
+        });
 }
 
 function getDateAsEpoch(dateString){
@@ -85,9 +83,7 @@ function deleteMovie(req, res) {
 
 function deleteMovies(req, res) {
     movieRepository.removeAll(function () {
-        seedDatabase.seed(0, function () {
-            return res.send();
-        });
+        return res.send();        
     });
 }
 

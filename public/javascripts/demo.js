@@ -1,11 +1,9 @@
-﻿$(function () {
-    "use strict";
+﻿
     // Funksjoner
     function summer(a, b) {
     	var sum = a + b; 
     	return sum;
-    }
-    
+    }  
    
     
     //console.log(
@@ -14,6 +12,8 @@
     })(2, 5)
     //);
     
+
+  
     // ...Nestet funksjon
     function hei(navn) {
     	function skrivUt() {
@@ -75,9 +75,8 @@
         }
       }
 
-    
-    
-
+$(function () {
+    "use strict";    
     // Objekter
     var person = {
         fornavn: "Gunnar",
@@ -92,33 +91,46 @@
     person.alder = 24;
     person.alertNavnOgAlder = function () { alert(this.navn() + " - " + this.alder); };
 
-    // Closure
-    var f1 = function () {
-        var v = "123";
 
-        return function () {
-            console.log(v);
+
+    // Konstruktorfunksjon /protype
+
+    var Person = function(fornavn, etternavn) {
+       this.fornavn = fornavn;
+       this.etternavn = etternavn;
+   };
+
+    // Apply
+
+   Person.prototype.navn = person.navn;
+   Person.prototype.logPerson = person.logPerson;
+    
+    var person2 = new Person("Bjørn", "Hansen");
+    var person3 = new Person("Hans", "Bjørnsen");
+
+    person2.logPerson();
+    person3.logPerson();
+
+    var person4 = Object.create(Person.prototype);
+    person4.fornavn = "Per";
+    person4.etternavn = "Person";
+    person4.logPerson();
+
+    
+    // Closure
+    var v = "123";
+    var f1 = function(u) {
+        return function() {
+            console.log(u);
         };
     };
 
-    var f2 = f1();
+    var f2 = f1(v);
+    v = "456";
     f2();
 
     // Callback
     setTimeout(function () { person.logPerson(); }, 2000);
-
-    // Konstruktorfunksjon /protype
-
-    var Person = function (fornavn, etternavn) {
-        this.fornavn = fornavn;
-        this.etternavn = etternavn;
-    };
-
-    Person.prototype.navn = person.navn;
-    Person.prototype.logPerson = person.logPerson;
-
-    var person2 = new Person("Harald", "Rex");
-    person2.logPerson();
 
     // NameSpace
     var app = app || {};
@@ -175,6 +187,19 @@
     //def.resolve("resolved");
 
 
+    // Dato
+    var d = new Date();
+    console.log(d);
+
+    d = new Date(0);
+
+    //Test
+    module("utils");
+    
+    test("hello test", function () {
+        equal(1, "2", "Passed!");
+    });
+
     //----------------------------
     // jQuery
     var p = $("<p class='dynamisk'>Innhold som er lagt til fra JavaScript</p>");
@@ -204,7 +229,7 @@
         debugger;
     };
 
-    content.find("p").one("mouseover", mouseOver);
+    content.find("p").on("mouseover", mouseOver);
     content.one("mouseover", "p", mouseOver);
 
     content.append("<p>Enda mer innhold</p>");

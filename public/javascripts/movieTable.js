@@ -8,6 +8,7 @@ app.movieTable = (function ($) {
     var _table;
 
     function loadMovies() {
+        console.log("loadMovies");
         app.movieApi.getMovies()
             .fail(app.utils.logError)
             .done(addMoviesToTable);

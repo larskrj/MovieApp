@@ -15,11 +15,12 @@ app.imageDialog = (function () {
             buttons: [
                 {   
                     text: "Lagre",
-                    click: function () {
-                        app.movieApi.addImage(
-                            _dialog.find("#movieId").val(),
-                            _dialog.find("#imageUrl").val(),
-                            app.messages.publishMoviesUpdated);
+                    click: function () {      
+                        var movieId = _dialog.find("#movieId").val(),
+                            imageUrl = _dialog.find("#imageUrl").val();
+
+                            app.movieApi.addImage(movieId, imageUrl)
+                                .done(app.messages.publishMoviesUpdated);
                         $(this).dialog("close");
                     },
                 },{

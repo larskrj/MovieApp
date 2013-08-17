@@ -5,14 +5,13 @@ var app = app || {};
 app.movies = (function ($) {
     "use strict";
 
-    function deleteMovies(e) {
+    function deleteMovies() {
         if (confirm($(this).data("confirm-message")))
-            app.movieApi.deleteMovies().done(app.messages.publishMoviesUpdated);
-        
+            app.movieApi.deleteMovies().done(app.messages.publishMoviesUpdated);        
     }
         
     function init(table, form, deleteMoviesButton, imageDialog) {       
-        
+        console.log("movies.init");
         app.movieTable.init(table);
         
         app.movieForm.init(form);

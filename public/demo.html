@@ -10,41 +10,38 @@
         <section id="main">
 
             <h2>Demo</h2>
-            <div id="content"></div>
+            <div id="content" data-viktig-info="123"></div>
+            
             <button id="btn1">En knapp</button>
 
         </section>
     </div>
     <script type="text/javascript" src="javascripts/libs/jquery-1.8.0.js"></script>
     <script type="text/javascript" src="javascripts/libs/pubsub.js"></script>
-    <!--<script type="text/javascript" src="javascripts/demo.js"></script>-->
+  <!--  <script type="text/javascript" src="javascripts/demo.js"></script>-->
     <script>
-        $(function () {
-            "use strict";
+       
+            
+        function summer(a, b) {
+            var sum = a + b; 
+            return sum;
+        }
 
-            // Objekter
 
-            // Closure
+        function a(){
+            var v = "a";
 
-            // Callback
+            function b (){
+                var v = "b";
+                console.log(v);
+                v2 = "1"
+            }
+            b();
+            console.log(v);
+        }
+        a();
+        console.log(window.v2);
 
-            // Konstruktorfunksjon /protype
-
-            // NameSpace
-
-            // Modul
-
-            // Deferred
-
-            // PubSub
-
-            // jQuery
-
-            // Events
-
-            // Ajax
-
-        });
     </script>
 </body>
 </html>

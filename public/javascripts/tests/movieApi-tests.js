@@ -108,7 +108,7 @@
             [200, { "Content-Type": "application/json" }, "{}"]);
 
         // Act
-        app.movieApi.addImage(data.id, data.url, callback);
+        app.movieApi.addImage(data.id, data.url).done(callback);
         server.respond();
 
         // Assert

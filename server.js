@@ -27,9 +27,6 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
-// Seed database
-require("./seedDatabase").seedIfEmpty();
-
 // Routes
 require("./routes/api/movies")(app);
 require("./routes/api/movieImages")(app);

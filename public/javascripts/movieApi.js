@@ -20,12 +20,13 @@ app.movieApi = (function () {
 	}
     
 	function deleteMovies() {
+		console.log("deleteMovies");
 	    return $.ajax({ url: app.settings.movieUrl, type: "delete" });
 	}
     
-	function addImage(id, imageUrl, callback) {
+	function addImage(id, imageUrl) {
 	    var apiUrl = app.settings.imageUrl.replace(":id", id);
-	    $.post(apiUrl, { id: id, url: imageUrl }, callback, "json");
+	    return $.post(apiUrl, { id: id, url: imageUrl }, null, "json");
 	}
 
 	return {
