@@ -1,3 +1,4 @@
+//Skrevet async for å kunne byttes ut med lagring i database eller lignende (som mongoDb)
 var fs = require("fs"),
     movies, 
     lastId = 0;
@@ -10,7 +11,9 @@ function setMovies(){
     movies = JSON.parse(data);
     movies.forEach(function(movie){ 
         movie._id = ++lastId; 
+        console.log(movie.lanseringsdato);
         movie.lanseringsdato = new Date(movie.lanseringsdato);
+        console.log(movie.lanseringsdato);
     });
 }
 

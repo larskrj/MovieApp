@@ -1,4 +1,6 @@
-﻿/// <reference path="libs/jquery-1.8.0.js" />
+﻿// Benyttes for intellisense i Visual Studio
+
+/// <reference path="libs/jquery-1.8.0.js" />
 /// <reference path="libs/pubsub.js" />
 /// <reference path="libs/jquery.validate-vsdoc.js" />
 /// <reference path="libs/jquery.validate.js" />

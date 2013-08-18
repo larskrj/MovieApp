@@ -18,8 +18,9 @@ app.movieTable = (function ($) {
         var i;
         _table.find("tbody").empty();
         
-        if (!movies || movies.length == 0)
-            return;               
+        if (!movies || movies.length === 0){
+            return;
+        }            
         
         for(i = 0; i < movies.length; i++) {
             _table.find("tbody").append(createTableRow(movies[i]));
@@ -29,13 +30,13 @@ app.movieTable = (function ($) {
     }
 
     function createTableRow(movie) {
-        return "<tr>" +                 
-                 "<td>" + movie.tittel + "</td>" +
-                 "<td>" + movie.regissor + "</td>" +
-                 "<td>" + app.utils.convertToNorwegianDate(movie.lanseringsdato) + "</td>" +
-                 "<td>" + addImages(movie) + "<input type='button' class='nyttBildeKnapp' value='+' data-film-id='" + movie._id + "'/></td>" +
-               "</tr>";
-    };
+        return ["<tr>",                 
+                 "<td>" + movie.tittel + "</td>",
+                 "<td>" + movie.regissor + "</td>",
+                 "<td>" + app.utils.convertToNorwegianDate(movie.lanseringsdato) + "</td>",
+                 "<td>" + addImages(movie) + "<input type='button' class='nyttBildeKnapp' value='+' data-film-id='" + movie._id + "'/></td>",
+               "</tr>"].join("");
+    }
 
     function addImages(movie) {
         var images = "";
@@ -45,7 +46,7 @@ app.movieTable = (function ($) {
         });
 
         return images;
-    };    
+    }   
         
     function init(table) {
         _table = table;        

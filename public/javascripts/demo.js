@@ -9,14 +9,11 @@
       return a + b;
   }
   // En funksjon som tilordnes en variabel
-  var a = function(){return "Hei!"};
+  var a = function(){ return "Hei!"; };
 
-  // En funksjon som opprettes med konstruktør
-  var adder = new Function("a", "b", "return a + b;");
-
-  // Funksjonskall
-  adder(2, 2)
-  adder.call(this, 2, 2)
+    // Funksjonskall
+  adder(2, 2);
+  adder.call(this, 2, 2);
 
   // Funksjon som parametere
   function logger(f, a, b) {
@@ -37,7 +34,7 @@
   function f2() {
       var lokalFunksjon = function() {
           return "Lokal pokal";
-      }
+      };
   }
   // ... samme som
   function f3() {
@@ -50,7 +47,7 @@
   function f4() {
       globalFunksjon = function() {
           return "GLOBAL";
-      }
+      };
   }
 
     // Objekter
@@ -66,6 +63,8 @@
     person.logPerson();
     person.alder = 24;
     person.alertNavnOgAlder = function () { alert(this.navn() + " - " + this.alder); };
+
+
 
     // Closure
     var f5 = function () {
@@ -94,6 +93,16 @@
 
     var person2 = new Person("Harald", "Rex");
     person2.logPerson();
+
+    // Object.create
+
+    var personProto = { navn: function () { return this.fornavn + " " + this.etternavn; } };
+
+    var person3 = Object.create(personProto);
+
+    person3.fornavn = "Nils";
+    person3.etternavn = "Pedersen";
+    person3.navn();
 
     // NameSpace
     var app = app || {};
@@ -124,31 +133,55 @@
     var def = $.getJSON("/api/movies");
     //var def = new $.Deferred(); //
 
-    def.done(suksess)
-        .always(kallesAlltid)
-        .fail(feil);
 
     function feil(data) {
-        console.log("fail: " + data);
+        console.log("feil: " + data);
     }
 
     function kallesAlltid(data) { console.log("always: " + data); }
 
     function suksess(data) {
-        console.log("done: " + data);
-        PubSub.publish(msg);
+        console.log("hentet filmer");
+        //console.log(data);
+        PubSub.publish(msg, [data]);
     }
 
+     function skrivUtData(data){ console.log(data); }
+
+    def.done(suksess)
+        .always(kallesAlltid)
+        .fail(feil);
 
     //def.reject("rejected");
 
     // PubSub
     var msg = "filmerHentet";
     PubSub.subscribe(msg, function () { console.log("Filmene er hentet"); });
+    PubSub.subscribe(msg, skrivUtData);        
     //PubSub.publish(msg);
 
     //def.resolve("resolved");
 
+    // Diverse
+    new Date(); // Nå
+    new Date(2013, 8, 4, 12, 15, 0) // Sep 04 2013 12:15:00
+    new Date(1376812394117) // Sun Aug 18 2013 09:53:14 
+    new Date(0) // Jan 01 1970 01:00:00
+
+    var liste = ["en", "to", "tre"];
+    console.log(liste.join("-")); // en-to-tre
+
+    //window.setTimeout
+    //window.location = "oppgave1.html"
+
+    //"use strict";
+    //ikkeDefinert = 1;
+
+
+    console.log("1" == 1); // true
+    console.log("1" === 1); // false
+    console.log(0 == false); // true
+    console.log(0 === false); // false
 
     //----------------------------
     // jQuery
@@ -176,7 +209,7 @@
     var mouseOver = function (e) {
         console.log("mouse over");
         console.log($(this).text());
-        debugger;
+        //debugger;
     };
 
     content.find("p").one("mouseover", mouseOver);

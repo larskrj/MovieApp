@@ -31,7 +31,7 @@ app.imageDialog = (function () {
                 }
             ]        
         });      
-};
+}
 
 function activateNewImageButtons(movieTable) {
     
@@ -40,7 +40,8 @@ function activateNewImageButtons(movieTable) {
         _dialog.find("input[type=hidden]").val($(this).data("filmId"));
         _dialog.find("input[type=text]").val("");
     });
-};
+}
+
 function init(dialog, movieTable) {    
     _dialog = dialog;
     

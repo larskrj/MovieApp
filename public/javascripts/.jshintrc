@@ -1,0 +1,14 @@
+{
+	"curly": true,
+	"latedef": true,
+	"eqeqeq": true,
+	"browser": true,
+	"undef": true,
+  	"unused": true,
+	"globals": { 
+		"jQuery": false, 
+		"app": false,
+		"console": false,
+		"PubSub": false 
+		}
+}
